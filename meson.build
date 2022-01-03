@@ -24,18 +24,28 @@ conf_data = configuration_data()
 conf_data.set_quoted('application_id', app_id)
 conf_data.set_quoted('version', meson.project_version())
 conf_data.set10('debug', get_option('buildtype') == 'debug')
-conf_data.set_quoted('latex2svg_loc', get_option('libexecdir') / 'nklatex-latex2svg')
+conf_data.set_quoted('latex2svg_loc', get_option('prefix') / get_option('libexecdir') / 'nklatex-latex2svg')
 configure_file(input : 'config.h.in',
 	output : 'config.h',
 	configuration : conf_data
+)
+
+service_conf_data = configuration_data()
+service_conf_data.set('nklatex', nklatex_bindir / 'nklatex')
+service = configure_file(input: '@0@.service.in'.format(app_id),
+  output: '@0@.service'.format(app_id),
+  configuration: service_conf_data
 )
 
 install_data('latex2svg', rename: 'nklatex-latex2svg', install_dir: get_option('libexecdir'))
 install_data('@0@.desktop'.format(app_id), install_dir: get_option('datadir') / 'applications')
 install_data('@0@.svg'.format(app_id), install_dir: get_option('datadir') / 'icons'  / 'hicolor'  / 'scalable' / 'apps')
 install_data('@0@.gschema.xml'.format(app_id), install_dir: get_option('datadir') / 'glib-2.0' / 'schemas')
-install_data('@0@.service'.format(app_id), install_dir: get_option('datadir') / 'dbus-1' / 'services')
-gnome.post_install()
+install_data(service, install_dir: get_option('datadir') / 'dbus-1' / 'services')
+gnome.post_install(
+  glib_compile_schemas: true,
+  update_desktop_database: true
+)
 
 app = executable('nklatex', [
 		'nklatex.c',

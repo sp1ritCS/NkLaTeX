@@ -318,6 +318,7 @@ void latex_result_cb(GObject* src, GAsyncResult* res, LatexResultDataCb* user_da
 	
 	g_free(buffer);
 	g_object_unref(src);
+	g_free(user_data);
 }
 
 static void updated_image_path(GObject* src, GAsyncResult* res, gpointer) {
@@ -552,6 +553,11 @@ static void pbtn_clicked(GtkButton* btn, PBtnClickedData* user_data) {
 			proc = g_subprocess_new(G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_PIPE, &err, env, doc_path, svg_path, NULL);
 		else
 			proc = g_subprocess_new(G_SUBPROCESS_FLAGS_STDOUT_PIPE | G_SUBPROCESS_FLAGS_STDERR_PIPE, &err, LATEX2SVG_LOCATION, doc_path, svg_path, NULL);
+		if (err) {
+			g_warning("Failed launching latex2svg: %s\n", err->message);
+			g_error_free(err);
+			return;
+		}
 		LatexResultDataCb* lres_d = g_new(LatexResultDataCb, 1);
 		lres_d->doc_fd = fd;
 		lres_d->svg_fd = *user_data->svg_fd;

@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=arpa.sp1rit.NoteKit.NkLaTeX
-Exec=/home/florian/.local/bin/nklatex --gapplication-service
