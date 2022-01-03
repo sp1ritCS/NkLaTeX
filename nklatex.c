@@ -556,6 +556,16 @@ static void pbtn_clicked(GtkButton* btn, PBtnClickedData* user_data) {
 		if (err) {
 			g_warning("Failed launching latex2svg: %s\n", err->message);
 			g_error_free(err);
+
+			gtk_widget_set_sensitive(GTK_WIDGET(btn), TRUE);
+			gtk_widget_set_visible(GTK_WIDGET(user_data->res_stack), TRUE);
+			close(fd);
+
+			gtk_button_set_label(btn, "Render");
+			adw_leaflet_navigate(user_data->leaflet, ADW_NAVIGATION_DIRECTION_BACK);
+			*user_data->pane_state = PANE_EDIT;
+
+
 			return;
 		}
 		LatexResultDataCb* lres_d = g_new(LatexResultDataCb, 1);
