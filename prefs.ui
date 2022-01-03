@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<object id="pref_win" class="AdwPreferencesWindow">
+		<child>
+			<object class="AdwPreferencesPage">
+				<property name="title">LaTeX</property>
+				<property name="icon-name">document-page-setup-symbolic</property>
+				<property name="name">latex</property>
+				<child>
+					<object class="AdwPreferencesGroup">
+						<property name="title">Packages</property>
+						<property name="description">Configure what packages will be included during compilation</property>
+						<child>
+							<object class="AdwActionRow">
+								<property name="title">TikZ</property>
+								<property name="subtitle">\usepackage{tikz}</property>
+								<child type="suffix">
+									<object class="GtkSwitch" id="pkg_tikz">
+										<property name="valign">center</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="AdwActionRow">
+								<property name="title">CircuiTikZ</property>
+								<property name="subtitle">\usepackage{circuitikz}</property>
+								<child type="suffix">
+									<object class="GtkSwitch" id="pkg_circuitikz">
+										<property name="valign">center</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="AdwActionRow">
+								<property name="title">chemfig</property>
+								<property name="subtitle">\usepackage{chemfig}</property>
+								<child type="suffix">
+									<object class="GtkSwitch" id="pkg_chemfig">
+										<property name="valign">center</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="AdwActionRow">
+								<property name="title">mhchem</property>
+								<property name="subtitle">\usepackage{mhchem}</property>
+								<child type="suffix">
+									<object class="GtkSwitch" id="pkg_mhchem">
+										<property name="valign">center</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="AdwExpanderRow">
+								<property name="title">Custom preamble content</property>
+								<property name="subtitle">Apended to the end of the preamble</property>
+								<child>
+									<object class="GtkSourceView">
+										<property name="height-request">128</property>
+										<property name="buffer">
+											<object class="GtkSourceBuffer" id="preamble">
+											</object>
+										</property>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</child>
+			</object>
+		</child>
+	</object>
+</interface>

@@ -1,0 +1,10 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define APPL_ID @application_id@
+#define VERSION @version@
+#define DEBUG_MODE @debug@
+
+#define LATEX2SVG_LOCATION @latex2svg_loc@
+
+#endif // CONFIG_H

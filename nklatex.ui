@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<menu id="nkltx_appmenu">
+		<section>
+			<item>
+				<attribute name="label">Preferences</attribute>
+				<attribute name="action">win.preferences</attribute>
+			</item>
+		</section>
+		<section>
+			<item>
+				<attribute name="label">About</attribute>
+				<attribute name="action">win.about</attribute>
+			</item>
+		</section>
+	</menu>
+	<object id="inner" class="GtkBox">
+		<property name="orientation">vertical</property>
+		<child>
+		<object class="AdwHeaderBar">
+			<child type="start">
+				<object class="GtkMenuButton">
+					<property name="icon-name">open-menu-symbolic</property>
+					<property name="menu-model">nkltx_appmenu</property>
+					<property name="primary">true</property>
+				</object>
+			</child>
+				<child type="end">
+					<object class="GtkButton" id="pbtn">
+						<property name="label">Render</property>
+						<style>
+							<class name="suggested-action"/>
+						</style>
+					</object>
+				</child>
+			</object>
+		</child>
+		<child>
+			<object class="AdwLeaflet" id="leaflet">
+				<child>
+					<object class="NkLatexSizeContainer" id="scont">
+						<child>
+							<object class="GtkScrolledWindow">
+								<property name="width-request">256</property>
+								<child>
+									<object class="GtkSourceView" id="view">
+										<property name="vexpand">true</property>
+										<property name="hexpand">true</property>
+										<property name="buffer">
+											<object class="GtkSourceBuffer" id="buffer"/>
+										</property>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</child>
+				<child>
+					<object class="GtkBox" id="res">
+						<property name="visible">false</property>
+						<property name="orientation">vertical</property>
+						<child>
+							<object class="GtkStack">
+								<child>
+									<object class="GtkStack" id="result_stack">
+										<child>
+											<object class="NkLatexSvgArea" id="render">
+												<property name="vexpand">true</property>
+												<property name="hexpand">true</property>
+												<property name="visible">false</property>
+											</object>
+										</child>
+										<child>
+											<object class="GtkScrolledWindow" id="error_view">
+												<property name="visible">false</property>
+												<property name="width-request">256</property>
+												<child>
+													<object class="GtkLabel" id="error">
+														<property name="hexpand">true</property>
+														<property name="vexpand">true</property>
+														<style>
+															<class name="tex_error"/>
+														</style>
+													</object>
+												</child>
+											</object>
+										</child>
+									</object>
+								</child>
+								<child>
+									<object class="GtkSpinner" id="spinner">
+										<property name="vexpand">true</property>
+										<property name="spinning">true</property>
+										<property name="margin-start">16</property>
+										<property name="margin-end">16</property>
+									</object>
+								</child>
+							</object>
+						</child>
+						<child>
+							<object class="GtkButton" id="bbtn">
+								<child>
+									<object class="GtkImage">
+										<property name="icon_size">1</property>
+										<property name="icon_name">go-previous-symbolic</property>
+									</object>
+								</child>
+								<style>
+									<class name="image-button"/>
+								</style>
+							</object>
+						</child>
+					</object>
+				</child>
+			</object>
+		</child>
+	</object>
+</interface>

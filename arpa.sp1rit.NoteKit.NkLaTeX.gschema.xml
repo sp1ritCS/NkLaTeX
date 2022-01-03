@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="arpa.sp1rit.NoteKit.NkLaTeX">
+	<schema id="arpa.sp1rit.NoteKit.NkLaTeX" path="/com/github/blackhole89/NoteKit/external/arpa/sp1rit/NkLaTeX/">
+		<key name="pkg-tikz" type="b">
+			<default>false</default>
+			<summary>Use TikZ package</summary>
+		</key>
+		<key name="pkg-circuitikz" type="b">
+			<default>false</default>
+			<summary>Use CircuiTikZ package</summary>
+		</key>
+		<key name="pkg-chemfig" type="b">
+			<default>false</default>
+			<summary>Use chemfig package</summary>
+		</key>
+		<key name="pkg-mhchem" type="b">
+			<default>false</default>
+			<summary>Use mhchem package</summary>
+		</key>
+		<key name="custom-preamble" type="s">
+			<default>""</default>
+			<summary>Appended to the end of the preamble</summary>
+		</key>
+	</schema>
+</schemalist>

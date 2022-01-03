@@ -1,0 +1,20 @@
+<node>
+	<interface name="com.github.blackhole89.NoteKit.External">
+		<!--
+			activate:
+			@widget: Refers to an external NoteKit widget, internal
+			         to NoteKit. The first element is a path to the
+			         Note the Widget is located in, the second a
+			         unique identifier of it.
+			@data:   The data attached to the widget by the application
+			         that added it.
+			@since: 0.1.0
+
+			Method used to spawn a edit window of a preexisting widget.
+		-->
+		<method name="activate">
+			<arg direction="in" type="(ss)" name="widget" />
+			<arg direction="in" type="s" name="data" />
+		</method>
+	</interface>
+</node>

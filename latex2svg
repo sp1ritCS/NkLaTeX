@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+if [ $# -lt 2 ]
+  then
+    echo "Usage: latex2svg /path/to/file.tex /path/to/output"
+	exit 2
+fi
+
+TDIR=`mktemp -d --tmpdir=/tmp`
+cd "$TDIR"
+
+JOBNAME=$(uuidgen)
+
+xelatex -no-pdf -shell-escape -interaction=nonstopmode -jobname=$JOBNAME "$1" > /dev/stderr
+dvisvgm -n1 -e "$JOBNAME.xdv" > /dev/stderr
+cat "$JOBNAME.svg" > $2
+cat "$JOBNAME.bsl" > /dev/stdout
+
+rm -r $TDIR
